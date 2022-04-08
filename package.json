@@ -5,7 +5,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "CLIMEM=8999 node -r climem src/index.js",
+    "climem": "npx climem 8999",
+    "test": "npx autocannon -c 100 -d 30 -p 10 http://localhost:3000"
   },
   "repository": {
     "type": "git",
@@ -17,5 +19,9 @@
   "bugs": {
     "url": "https://github.com/anopszetex/memory-leak-example/issues"
   },
-  "homepage": "https://github.com/anopszetex/memory-leak-example#readme"
+  "homepage": "https://github.com/anopszetex/memory-leak-example#readme",
+  "devDependencies": {
+    "autocannon": "^7.8.1",
+    "climem": "^1.0.3"
+  }
 }
