@@ -1,0 +1,21 @@
+{
+  "name": "memory-leak-example",
+  "version": "1.0.0",
+  "description": "Exemplo de memory leak",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anopszetex/memory-leak-example.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/anopszetex/memory-leak-example/issues"
+  },
+  "homepage": "https://github.com/anopszetex/memory-leak-example#readme"
+}
