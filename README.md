@@ -16,7 +16,15 @@ Instalando dependencias:
 ```sh
 npm install
 ```
-#### Iniciando o serviço
+#### Iniciando o serviço:
 ```sh
 npm start
+```
+
+```sh
+# em segundo execute o climem para monitorar o consumo de memória
+npm run climem
+
+# em terceiro e por último execute autocannon, irá realizar teste de carga/requisições
+npm test
 ```
