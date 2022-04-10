@@ -3,13 +3,14 @@ import { createServer } from 'http'
 import { serverConfig } from './config.js'
 
 const myEvent = new Events()
+const TIMEOUT = 1500
 
-function onData(date) {
+function onData (date) {
   const items = []
 
-  setInterval(() => {
+  setInterval(function myInterval () {
     items.push(date)
-  }, 1500);
+  }, TIMEOUT)
 }
 
 myEvent.on('data', onData)
