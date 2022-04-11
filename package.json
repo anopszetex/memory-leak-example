@@ -7,7 +7,8 @@
   "scripts": {
     "start": "CLIMEM=8999 node -r climem src/index.js",
     "climem": "npx climem 8999",
-    "test": "npx autocannon -c 100 -d 30 -p 10 http://localhost:3000"
+    "test": "npx autocannon -c 100 -d 30 -p 10 http://localhost:3000",
+    "flame-0x": "npx 0x -- node src/index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/anopszetex/memory-leak-example#readme",
   "devDependencies": {
+    "0x": "^5.2.1",
     "autocannon": "^7.8.1",
     "climem": "^1.0.3"
   }
