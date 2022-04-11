@@ -3,11 +3,13 @@ import { randomBytes } from 'crypto'
 import { createServer } from 'http'
 import { serverConfig } from './config.js'
 
-const myEvent = new Events()
 const TIMEOUT = 1500
+const SIZE = 10000
+
+const myEvent = new Events()
 
 function getBytes() {
-  return randomBytes(10000)
+  return randomBytes(SIZE)
 }
 
 function onData (date) {
