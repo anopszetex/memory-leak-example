@@ -1,13 +1,20 @@
 import Events from 'events'
+import { randomBytes } from 'crypto'
 import { createServer } from 'http'
 import { serverConfig } from './config.js'
 
 const myEvent = new Events()
 const TIMEOUT = 1500
 
-function onData (date) {
-  const items = []
+function getBytes() {
+  return randomBytes(10000)
+}
 
+function onData (date) {
+  getBytes()
+
+  const items = []
+  
   setInterval(function myInterval () {
     items.push(date)
   }, TIMEOUT)
