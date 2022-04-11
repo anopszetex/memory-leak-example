@@ -18,17 +18,17 @@ npm install
 ```
 #### Iniciando o serviço:
 ```sh
-npm start
-
-# ou
 # iniciando serviço 0x, monitoração de gargalo, otimização...
 npm run flame-0x
 
 # em seguida autocannon
 npm test
 ```
+ou
 
 ```sh
+npm start
+
 # em segundo execute o climem para monitorar o consumo de memória
 npm run climem
 
