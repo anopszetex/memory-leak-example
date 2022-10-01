@@ -1,37 +1,43 @@
 # memory-leak-example
-Exemplo de memory leak
+Example of memory leak in **Node.js**
 
-## Serviço
-Clonando projeto:
+## Project Setup
+Clone the repository:
 ```sh
-https://github.com/anopszetex/memory-leak-example.git
+git@github.com:anopszetex/memory-leak-example.git
 ```
 
-Pasta destino:
+Make it your current working directory:
 ```sh
 cd memory-leak-example
 ```
 
-Instalando dependencias:
+Install dependencies:
 ```sh
-npm install
+npm i
 ```
-#### Iniciando o serviço:
-```sh
-# iniciando serviço 0x, monitoração de gargalo, otimização...
-npm run flame-0x
 
-# em seguida autocannon
+## To start the app
+### Starting service with 0x 
+```sh
+# discover the bottlenecks and hot paths in your code, with flamegraphs
+npm run flame-0x
+```
+
+### In sequence autocannon
+```sh
+# in sequence autocannon
 npm test
 ```
-ou
+
+or
 
 ```sh
 npm start
 
-# em segundo execute o climem para monitorar o consumo de memória
+# in second execute the climem to monitoring the consume of memory
 npm run climem
 
-# e terceiro e por último execute autocannon, irá realizar teste de carga/requisições
+# and for last, execute autocannon, will perform test of load/requests
 npm test
 ```
