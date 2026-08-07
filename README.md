@@ -29,7 +29,7 @@ ou
 ```sh
 npm start
 
-# em segundo execute o climem para monitorar o consumo de memória
+# em segundo execute o climem para monitorar o consumo de memória.
 npm run climem
 
 # e terceiro e por último execute autocannon, irá realizar teste de carga/requisições
