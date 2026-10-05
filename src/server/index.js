@@ -1,6 +1,6 @@
-import Events from 'events'
-import { randomBytes } from 'crypto'
-import { createServer } from 'http'
+import Events from 'node:events'
+import { randomBytes } from 'node:crypto'
+import { createServer } from 'node:http'
 import { serverConfig } from './config.js'
 
 const TIMEOUT = 1500
@@ -25,15 +25,21 @@ function onData (date) {
 myEvent.on('data', onData)
 
 function handler (request, response) {
-  myEvent.emit('data', Date.now())
+  if (request.url === '/leak') {
+    myEvent.emit('data', Date.now())
+    response.end('leaking handler executed')
+    return
+  }
 
-  response.end('hello')
+  getBytes()
+  response.end('safe handler executed')
 }
 
-const startServer = () => {
+const startServer = (port = serverConfig.PORT) => {
   const server = createServer(handler)
 
-  server.listen(serverConfig.PORT)
+  server.listen(port)
+  return server
 }
 
-export { startServer }
+export { handler, startServer }

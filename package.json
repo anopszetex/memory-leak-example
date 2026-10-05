@@ -1,13 +1,16 @@
 {
   "name": "memory-leak-example",
   "version": "1.0.0",
-  "description": "Exemplo de memory leak",
+  "description": "Practical Node.js memory leak diagnosis with a safe control endpoint",
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "CLIMEM=8999 node -r climem src/index.js",
+    "start": "node src/index.js",
+    "start:monitor": "CLIMEM=8999 node -r climem src/index.js",
     "climem": "npx climem 8999",
-    "test": "npx autocannon -c 100 -d 30 -p 10 http://localhost:3000",
+    "test": "node --test",
+    "load:safe": "autocannon -c 100 -d 30 -p 10 http://localhost:3000/safe",
+    "load:leak": "autocannon -c 100 -d 30 -p 10 http://localhost:3000/leak",
     "flame-0x": "npx 0x -- node src/index.js"
   },
   "repository": {
@@ -16,7 +19,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/anopszetex/memory-leak-example/issues"
   },
