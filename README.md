@@ -48,8 +48,6 @@ O caminho com vazamento existe intencionalmente para fins educacionais e não de
 
 # memory-leak-example
 
----
-
 A controlled Node.js example for reproducing, diagnosing, and comparing a memory leak with a safe endpoint.
 
 ## How it works
