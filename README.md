@@ -1,5 +1,3 @@
-# memory-leak-example
-
 <details>
 <summary><strong>🇧🇷 Ver documentação em Português (Brasil)</strong></summary>
 
@@ -47,6 +45,8 @@ O caminho com vazamento existe intencionalmente para fins educacionais e não de
 [MIT](LICENSE)
 
 </details>
+
+# memory-leak-example
 
 ---
 
