@@ -1,43 +1,76 @@
 # memory-leak-example
-Example of memory leak in **Node.js**
 
-## Project Setup
-Clone the repository:
+Exemplo prático de **vazamento de memória em Node.js** e como diagnosticá-lo com ferramentas de profiling.
+
+Este repositório contém um servidor HTTP propositalmente problemático. O objetivo é mostrar como identificar o leak, entender a causa e aplicar a correção.
+
+## O que causa o vazamento
+
+O servidor emite um evento a cada requisição. O listener do evento:
+
+- cria um `setInterval` que nunca é limpo;
+- acumula dados em um array a cada intervalo;
+- mantém referências vivas impedindo o garbage collector de atuar.
+
+Com o tempo, cada requisição adiciona mais listeners ativos e mais memória retida, resultando em crescimento contínuo do heap.
+
+## Ferramentas utilizadas
+
+- **[0x](https://github.com/davidmarkclements/0x)** — gera flamegraphs para identificar hot paths e funções que consomem tempo/memória.
+- **[climem](https://github.com/naugtur/climem)** — monitora o consumo de memória do processo em tempo real.
+- **[autocannon](https://github.com/mcollina/autocannon)** — gera carga de requisições para acelerar a manifestação do leak.
+
+## Como rodar
+
+### Instalar dependências
+
 ```sh
-git@github.com:anopszetex/memory-leak-example.git
+npm install
 ```
 
-Make it your current working directory:
-```sh
-cd memory-leak-example
-```
-
-Install dependencies:
-```sh
-npm i
-```
-
-## To start the app
-### Starting service with 0x 
-```sh
-# discover the bottlenecks and hot paths in your code, with flamegraphs
-npm run flame-0x
-```
-
-### In sequence autocannon
-```sh
-# in sequence autocannon
-npm test
-```
-
-or
+### 1. Subir o servidor com `climem`
 
 ```sh
 npm start
+```
 
-# in second execute the climem to monitoring the consume of memory
+Em outro terminal, monitore a memória:
+
+```sh
 npm run climem
+```
 
-# and for last, execute autocannon, will perform test of load/requests
+### 2. Gerar carga
+
+```sh
 npm test
 ```
+
+Isso executa o `autocannon` contra `http://localhost:3000`.
+
+### 3. Gerar flamegraph com `0x`
+
+```sh
+npm run flame-0x
+```
+
+Depois gere carga novamente com `npm test` e analise o flamegraph gerado.
+
+## O que observar
+
+- O uso de memória sobe continuamente durante o teste de carga.
+- O flamegraph mostra funções relacionadas a `setInterval` e retenção de arrays.
+- O número de listeners ativos cresce a cada requisição.
+
+## Como corrigir
+
+A correção envolve:
+
+1. **Limpar o intervalo** quando não for mais necessário (`clearInterval`).
+2. **Evitar reter dados** em arrays que crescem indefinidamente.
+3. **Remover listeners** do `EventEmitter` quando a requisição termina, ou usar `once` quando apropriado.
+4. **Limitar o escopo dos dados** criados por requisição para que fiquem elegíveis ao garbage collector.
+
+## Licença
+
+[MIT](LICENSE)
